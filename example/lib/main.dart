@@ -34,7 +34,7 @@ class _MyHomeRouteState extends State<MyHomeRoute> {
   final cropKey = GlobalKey<ImgCropState>();
 
   Future getImage(type) async {
-    var image = await ImagePicker.pickImage(
+    var image = await ImagePicker().pickImage(
         source: type == _sheetType.gallery
             ? ImageSource.gallery
             : ImageSource.camera);
@@ -118,7 +118,7 @@ class _SimpleCropRouteState extends State<SimpleCropRoute> {
 
   @override
   Widget build(BuildContext context) {
-    final Map args = ModalRoute.of(context).settings.arguments;
+    final Map args = ModalRoute.of(context)?.settings.arguments as Map;
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -144,9 +144,8 @@ class _SimpleCropRouteState extends State<SimpleCropRoute> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final crop = cropKey.currentState;
             final croppedFile =
-                await crop.cropCompleted(args['image'], pictureQuality: 600);
+                await cropKey.currentState!.cropCompleted(args['image'], pictureQuality: 600);
             showImage(context, croppedFile);
           },
           tooltip: 'Increment',
