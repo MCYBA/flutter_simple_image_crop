@@ -1,16 +1,15 @@
 part of image_crop;
 
 class ImageOptions {
-  final int width;
-  final int height;
+  final int? width;
+  final int? height;
 
-  ImageOptions({
-    required this.width,
-    required this.height
-  });
+  ImageOptions({this.width, this.height})
+      : assert(width != null),
+        assert(height != null);
 
   @override
-  int get hashCode => Object.hash(width, height);
+  int get hashCode => hashValues(width, height);
 
   @override
   bool operator ==(other) {
@@ -27,7 +26,7 @@ class ImageOptions {
 
 class ImageCrop {
   static const _channel =
-      const MethodChannel('plugins.lykhonis.com/image_crop');
+  const MethodChannel('plugins.lykhonis.com/image_crop');
 
   static Future<bool> requestPermissions() {
     return _channel
@@ -35,9 +34,10 @@ class ImageCrop {
         .then<bool>((result) => result);
   }
 
-  static Future<ImageOptions> getImageOptions({required File file}) async {
+  static Future<ImageOptions> getImageOptions({File? file}) async {
+    assert(file != null);
     final result =
-        await _channel.invokeMethod('getImageOptions', {'path': file.path});
+    await _channel.invokeMethod('getImageOptions', {'path': file!.path});
     return ImageOptions(
       width: result['width'],
       height: result['height'],
@@ -45,13 +45,15 @@ class ImageCrop {
   }
 
   static Future<File> cropImage({
-    required File file,
-    required Rect area,
+    File? file,
+    Rect? area,
     double? scale,
   }) {
+    assert(file != null);
+    assert(area != null);
     return _channel.invokeMethod('cropImage', {
-      'path': file.path,
-      'left': area.left,
+      'path': file!.path,
+      'left': area!.left,
       'top': area.top,
       'right': area.right,
       'bottom': area.bottom,
@@ -60,11 +62,12 @@ class ImageCrop {
   }
 
   static Future<File> sampleImage({
-    required File file,
+    File? file,
     int? preferredSize,
     int? preferredWidth,
     int? preferredHeight,
   }) async {
+    assert(file != null);
     assert(() {
       if (preferredSize == null &&
           (preferredWidth == null || preferredHeight == null)) {
@@ -74,7 +77,7 @@ class ImageCrop {
       return true;
     }());
     final String path = await _channel.invokeMethod('sampleImage', {
-      'path': file.path,
+      'path': file!.path,
       'maximumWidth': preferredSize ?? preferredWidth,
       'maximumHeight': preferredSize ?? preferredHeight,
     });
