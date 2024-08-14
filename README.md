@@ -9,7 +9,7 @@ A simple and easy used flutter plugin to crop image on iOS and Android.
 
 ## Installation
 
-Add `simple_image_crop` [![simple_image_crop](https://img.shields.io/pub/v/simple_image_crop.svg)](https://pub.dartlang.org/packages/simple_image_crop) as [a dependency in `pubspec.yaml`](https://flutter.io/using-packages/#managing-package-dependencies--versions).
+Add `simple_image_crop_plus` [![simple_image_crop](https://img.shields.io/pub/v/simple_image_crop.svg)](https://pub.dartlang.org/packages/simple_image_crop) as [a dependency in `pubspec.yaml`](https://flutter.io/using-packages/#managing-package-dependencies--versions).
 
 ## Using
 

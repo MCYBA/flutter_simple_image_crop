@@ -9,7 +9,7 @@ class ImageOptions {
         assert(height != null);
 
   @override
-  int get hashCode => hashValues(width, height);
+  int get hashCode => Object.hash(width, height);
 
   @override
   bool operator ==(other) {

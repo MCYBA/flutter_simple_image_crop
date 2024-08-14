@@ -1,6 +1,6 @@
-name: simple_image_crop
+name: simple_image_crop_plus
 description: A simple and easy to use flutter plugin to crop image on iOS and Android.
-version: 0.1.2
+version: 1.0.1
 homepage: https://github.com/MCYBA/flutter_simple_image_crop.git
 
 environment:
@@ -17,5 +17,9 @@ dev_dependencies:
 
 flutter:
     plugin:
-        androidPackage: com.lykhonis.simpleimagecrop
-        pluginClass: SimpleImageCropPlugin
+        platforms:
+            android:
+                package: com.lykhonis.simpleimagecrop
+                pluginClass: SimpleImageCropPlugin
+            ios:
+                pluginClass: SimpleImageCropPlugin

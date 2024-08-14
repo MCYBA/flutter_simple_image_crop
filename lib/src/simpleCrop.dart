@@ -18,7 +18,7 @@ class ImgCrop extends StatefulWidget {
   const ImgCrop(
       {Key? key,
         this.image,
-        this.maximumScale: 2.0,
+        this.maximumScale = 2.0,
         this.onImageError,
         this.chipHeight,
         this.chipWidth,
@@ -31,7 +31,7 @@ class ImgCrop extends StatefulWidget {
   ImgCrop.file(File file,
       {Key? key,
         double scale = 1.0,
-        this.maximumScale: 2.0,
+        this.maximumScale = 2.0,
         this.onImageError,
         this.chipHeight,
         this.chipWidth,
@@ -50,7 +50,7 @@ class ImgCrop extends StatefulWidget {
         this.chipWidth,
         this.chipRadius = 150,
         this.chipHeightRatio = 1.0,
-        this.maximumScale: 2.0,
+        this.maximumScale = 2.0,
         this.onImageError,
         this.chipShape = 'circle',
       })  : image = AssetImage(assetName, bundle: bundle, package: package),
@@ -155,7 +155,7 @@ class ImgCropState extends State<ImgCrop> with TickerProviderStateMixin {
     return croppedFile;
   }
 
-  void _getImage({bool force: false}) {
+  void _getImage({bool force = false}) {
     final oldImageStream = _imageStream;
     _imageStream = widget.image!.resolve(createLocalImageConfiguration(context));
     if (_imageStream!.key != oldImageStream?.key || force) {
@@ -258,7 +258,8 @@ class ImgCropState extends State<ImgCrop> with TickerProviderStateMixin {
   }
 
   void _updateImage(ImageInfo imageInfo, bool synchronousCall) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
         _image = imageInfo.image;
         _scale = imageInfo.scale;
@@ -289,7 +290,7 @@ class ImgCropState extends State<ImgCrop> with TickerProviderStateMixin {
         );
       });
     });
-    WidgetsBinding.instance!.ensureVisualUpdate();
+    WidgetsBinding.instance.ensureVisualUpdate();
   }
 
   void _handleScaleStart(ScaleStartDetails details) {

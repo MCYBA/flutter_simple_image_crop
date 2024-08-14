@@ -18,7 +18,7 @@ dev_dependencies:
     flutter_test:
         sdk: flutter
 
-    simple_image_crop:
+    simple_image_crop_plus:
         path: ../
 
 flutter:

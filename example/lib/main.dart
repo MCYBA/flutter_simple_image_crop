@@ -3,7 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:simple_image_crop/simple_image_crop.dart';
+import 'package:simple_image_crop_plus/simple_image_crop.dart';
 
 enum _sheetType { gallery, camera }
 
