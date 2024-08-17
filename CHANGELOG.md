@@ -31,3 +31,7 @@ Add API `handleSize` to control the chip handle area
 ## 1.0.1
 
 migrate null-safety
+
+## 1.0.2
+
+update podspec file for ios
